@@ -1,14 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { graphqlHTTP } = require('express-graphql');
-const { buildSchema} = require('graphql');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
 
 const serverless = require("serverless-http");
-
-const BreakDown = require('../models/breakdown');
-const Driver = require('../models/driver');
 
 const app = express();
 
@@ -150,11 +144,11 @@ app.use('/graphql',
 );
 mongoose.connect(`mongodb+srv://Sandra:L5ZnZ4LfjAvzHWSV@cluster0.81el4.mongodb.net/mechanic-react-dev?retryWrites=true&w=majority`)
     .then(() => {
-        app.use('/.netlify/functions/api', router)
+        app.listen(4000);
     })
     .catch((error) => { console.log(error); })
-
-
+    
+app.use('/.netlify/functions/api', router)
 
 
 
