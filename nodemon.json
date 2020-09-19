@@ -1,0 +1,7 @@
+{
+    "env":{
+        "MONGO_USER":"Sandra",
+        "MONGO_PASSWORD":"L5ZnZ4LfjAvzHWSV",
+        "MONGO_DB": "mechanic-react-dev"
+    }
+}
