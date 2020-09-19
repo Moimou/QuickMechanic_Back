@@ -1,8 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { graphqlHTTP } = require('express-graphql');
+const { buildSchema} = require('graphql');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const serverless = require("serverless-http");
+
+const BreakDown = require('../models/breakdown');
+const Driver = require('../models/driver');
 
 const app = express();
 
