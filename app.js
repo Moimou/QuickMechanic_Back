@@ -5,11 +5,13 @@ const { buildSchema, UniqueDirectiveNamesRule } = require('graphql');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
+
 const BreakDown = require('./models/breakdown');
 const Driver = require('./models/driver');
 
 
 const app = express();
+
 
 
 app.use(bodyParser.json());
@@ -171,4 +173,7 @@ mongoose.connect(`mongodb+srv://Sandra:L5ZnZ4LfjAvzHWSV@cluster0.81el4.mongodb.n
         app.listen(4000);
     })
     .catch((error) => { console.log(error); })
+
+
+ 
 
