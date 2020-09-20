@@ -3,7 +3,7 @@ const {buildSchema} = require ('graphql');
 module.exports =  buildSchema(` 
             type BreakDown{
                 _id: ID!
-                time_of_injury: String!
+                time_of_accident: String!
                 driver_comment: String
                 # vehicle can have multiple faliure types
                 type_of_breakdown: String!
@@ -22,7 +22,7 @@ module.exports =  buildSchema(`
             }
 
             input BreakDownInput{
-                time_of_injury: String!
+                time_of_accident: String!
                  driver_comment: String
                  type_of_breakdown: String!
                  location: String!
