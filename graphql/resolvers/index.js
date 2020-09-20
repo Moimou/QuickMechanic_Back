@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const BreakDown = require('../../models/breakdown');
@@ -9,14 +8,15 @@ const Driver = require('../../models/driver');
 const breakdowns = async breakdownIds => {
     try {
         const breakdowns = await BreakDown.find({ _id: { $in: breakdownIds } });
-        return breakdowns.map(breakdown => {
+        breakdowns.map(breakdown => {
             return {
                 ...breakdown._doc,
                 _id: breakdown.id,
-                time_of_accident: new Date(breakDown._doc.time_of_accident).toISOString,
+                time_of_accident: new Date(breakdown._doc.time_of_accident).toISOString,
                 creator: driver.bind(this, breakdown.creator)
             };
         });
+        return breakdowns;
     } catch (err) {
         throw err;
     }
@@ -28,7 +28,6 @@ const driver = async driverId => {
         return {
             ...driver._doc,
             id: driver.id,
-            time_of_accident: new Date(breakDown._doc.time_of_accident).toISOString,
             createdBreakdowns: breakdowns.bind(this, driver._doc.createdBreakdowns)
         };
     } catch (err) {
@@ -39,24 +38,26 @@ const driver = async driverId => {
 
 
 
+
 module.exports = {
     breakdowns: async () => {
         try {
-            const breakdowns = await BreakDown.find()
+            const breakdowns = await BreakDown.find();
             return breakdowns.map(breakdown => {
                 return {
                     ...breakdown._doc,
-                    _id: breakdown._doc._id.toString(),
+                    _id: breakdown.id,
+                    time_of_accident: new Date(breakdown._doc.time_of_accident).toISOString,
                     creator: driver.bind(this, breakdown._doc.creator)
                 };
 
-            })
+            });
         } catch (err) {
-            throw err
+            throw err;
         }
     },
     createBreakDown: async (args) => {
-        const breakDown = new BreakDown({
+        const breakdown = new BreakDown({
             time_of_accident: new Date(args.breakdownInput.time_of_accident),
             driver_comment: args.breakdownInput.driver_comment,
             type_of_breakdown: args.breakdownInput.type_of_breakdown,
@@ -64,33 +65,35 @@ module.exports = {
             license_plate: args.breakdownInput.license_plate,
             creator: '5f64eb116dca91accffcfd3e'
         })
-        let createdbreakdown;
+        let createdBreakdown;
         try{
-        const result = await breakDown
-            .save()
-                createdbreakdown = {
+        const result = await breakdown.save();
+                createdBreakdown = {
                     ...result._doc,
                     _id: result._doc._id.toString(),
+                    time_of_accident: new Date(breakdown._doc.time_of_accident).toISOString,
                     creator: breakdown.bind(this, result._doc.creator)
                 };
             
             const creator = await Driver.findById('5f64eb116dca91accffcfd3e');
+
                 if (!creator) {
                     throw new Error("driver not found");
                 }
-                creator.createdBreakdowns.push(breakDown);
+                creator.createdBreakdowns.push(breakdown);
                 await creator.save();
-                return createdbreakdown;
+
+                return createdBreakdown;
            } catch (err){ 
-                console.log(err)
+                console.log(err);
                 throw err;
-            };
+            }
     },
     createDriver: async args => {
         try{ 
-        const existingdriver= await Driver.findOne({ email: args.driverInput.email })
+        const existingDriver= await Driver.findOne({ email: args.driverInput.email });
             
-                if (existingdriver) {
+                if (existingDriver) {
                     throw new Error("driver exists already");
                 }
                 const hashedPassword = await bcrypt.hash(args.driverInput.password, 12);
@@ -104,8 +107,8 @@ module.exports = {
           
                 return { ...result._doc, password: null, _id: result.id }
             } catch(err){
-                console.log(err)
+                throw err;
             }         
     }
-}
+};
 
