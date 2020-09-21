@@ -21,6 +21,14 @@ module.exports =  buildSchema(`
                 
             }
 
+            type Mechanic{
+                _id: ID!
+                email: String!
+                password: String
+                phoneNumber: Float!
+                
+            }
+
             input BreakDownInput{
                 time_of_accident: String!
                  driver_comment: String
@@ -36,12 +44,21 @@ module.exports =  buildSchema(`
 
             }
 
+            input MechanicInput{
+                email: String!
+                password: String!
+                phoneNumber: Float!
+
+            }
+
             type RootQuery{
                     breakdowns:[BreakDown!]!
             }
+
             type RootMutation{
                 createBreakDown(breakdownInput : BreakDownInput ): BreakDown
                 createDriver(driverInput : DriverInput ) : Driver
+                createMechanic(mechanicInput : MechanicInput ) : Mechanic
             }
                 schema{
                     query: RootQuery

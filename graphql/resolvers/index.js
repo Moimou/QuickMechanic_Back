@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 
 const BreakDown = require('../../models/breakdown');
 const Driver = require('../../models/driver');
+const Mechanic = require('../../models/mechanic');
 
 
 
@@ -35,7 +36,18 @@ const driver = async driverId => {
     }
 };
 
-
+const mechanic = async mechanicId => {
+    try {
+        const mechanic = await Driver.findById(mechanicId)
+        return {
+            ...mechanic._doc,
+            id: mechanic.id,
+            createdBreakdowns: mechanic.bind(this, driver._doc.createdBreakdowns)
+        };
+    } catch (err) {
+        throw error;
+    }
+};
 
 
 
@@ -89,6 +101,7 @@ module.exports = {
                 throw err;
             }
     },
+
     createDriver: async args => {
         try{ 
         const existingDriver= await Driver.findOne({ email: args.driverInput.email });
@@ -104,6 +117,29 @@ module.exports = {
                     phoneNumber: args.driverInput.phoneNumber
                 })
                 const result = await driver.save();
+          
+                return { ...result._doc, password: null, _id: result.id }
+            } catch(err){
+                throw err;
+            }         
+    },
+
+    createMechanic: async args => {
+
+        try{ 
+        const existingMechanic= await Mechanic.findOne({ email: args.mechanicInput.email });
+            
+                if (existingMechanic) {
+                    throw new Error("mechanic exists already");
+                }
+                const hashedPassword = await bcrypt.hash(args.mechanicInput.password, 12);
+         
+                const mechanic = new Mechanic({
+                    email: args.mechanicInput.email,
+                    password: hashedPassword,
+                    phoneNumber: args.mechanicInput.phoneNumber
+                })
+                const result = await mechanic.save();
           
                 return { ...result._doc, password: null, _id: result.id }
             } catch(err){
