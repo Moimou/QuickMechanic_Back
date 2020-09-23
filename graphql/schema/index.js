@@ -1,6 +1,6 @@
-const {buildSchema} = require ('graphql');
+const { buildSchema } = require('graphql');
 
-module.exports =  buildSchema(` 
+module.exports = buildSchema(` 
             type BreakDown{
                 _id: ID!
                 time_of_accident: String!
@@ -25,8 +25,14 @@ module.exports =  buildSchema(`
                 _id: ID!
                 email: String!
                 password: String
-                phoneNumber: Float!
+                phoneNumber: Int!
                 
+            }
+
+            type AuthDriverData{
+                driverId : ID!
+                token: String!
+                tokenExpiration : Int!
             }
 
             input BreakDownInput{
@@ -53,6 +59,7 @@ module.exports =  buildSchema(`
 
             type RootQuery{
                     breakdowns:[BreakDown!]!
+                    login(email: String!, password: String!): AuthDriverData!
             }
 
             type RootMutation{
@@ -65,4 +72,3 @@ module.exports =  buildSchema(`
                     mutation: RootMutation
                 }
             `);
-   

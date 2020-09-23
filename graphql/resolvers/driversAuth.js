@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 
 const Driver = require('../../models/driver');
@@ -30,5 +31,20 @@ module.exports = {
             }         
     },
 
-    
-};
+    login: async ({email,password}) =>{
+
+        const driver = await Driver.findOne({email:email});
+        if(!driver){
+            throw new Error ('Driver does not exist');
+        }
+       const isEqual = await bcrypt.compare(password, driver.password);
+       
+       if(!isEqual){
+        throw new Error ('Password is incorrect');
+        }
+        const token = jwt.sign({driverId: driver.id, email: driver.email},'teamtwonineonegroupasupersecretkey',{
+            expiresIn:'1h'
+        });
+        return {driverId: driver.id, token: token, tokenExpiration:1 }
+    }
+}; 
