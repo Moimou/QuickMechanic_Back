@@ -1,21 +1,38 @@
-const bcrypt = require('bcryptjs');
+const authDriverResolver = require('./driversAuth');
+const breakdownResolver = require('./breakdowns');
+const mechanicResolver = require('./mechanicAuth');
+
+const rootResolver = {
+    ...authDriverResolver,
+    ...breakdownResolver,
+    ...mechanicResolver
+};
+
+module.exports = rootResolver;
+
+
+/*const bcrypt = require('bcryptjs');
 
 const BreakDown = require('../../models/breakdown');
 const Driver = require('../../models/driver');
 const Mechanic = require('../../models/mechanic');
 
+const {dateToString} = require('../../helpers/date');
 
+const transformBreakdown = breakdown =>{
+    return {
+        ...breakdown._doc,
+        _id: breakdown.id,
+        time_of_accident:dateToString(breakdown._doc.time_of_accident),
+        creator: driver.bind(this, breakdown.creator)
+    };
+};
 
 const breakdowns = async breakdownIds => {
     try {
         const breakdowns = await BreakDown.find({ _id: { $in: breakdownIds } });
         breakdowns.map(breakdown => {
-            return {
-                ...breakdown._doc,
-                _id: breakdown.id,
-                time_of_accident: new Date(breakdown._doc.time_of_accident).toISOString,
-                creator: driver.bind(this, breakdown.creator)
-            };
+            return transformBreakdown(breakdown);
         });
         return breakdowns;
     } catch (err) {
@@ -42,7 +59,7 @@ const mechanic = async mechanicId => {
         return {
             ...mechanic._doc,
             id: mechanic.id,
-            createdBreakdowns: mechanic.bind(this, driver._doc.createdBreakdowns)
+           // createdBreakdowns: mechanic.bind(this, driver._doc.createdBreakdowns)
         };
     } catch (err) {
         throw error;
@@ -56,12 +73,8 @@ module.exports = {
         try {
             const breakdowns = await BreakDown.find();
             return breakdowns.map(breakdown => {
-                return {
-                    ...breakdown._doc,
-                    _id: breakdown.id,
-                    time_of_accident: new Date(breakdown._doc.time_of_accident).toISOString,
-                    creator: driver.bind(this, breakdown._doc.creator)
-                };
+                return transformBreakdown(breakdown);
+                
 
             });
         } catch (err) {
@@ -80,12 +93,7 @@ module.exports = {
         let createdBreakdown;
         try{
         const result = await breakdown.save();
-                createdBreakdown = {
-                    ...result._doc,
-                    _id: result._doc._id.toString(),
-                    time_of_accident: new Date(breakdown._doc.time_of_accident).toISOString,
-                    creator: breakdown.bind(this, result._doc.creator)
-                };
+                createdBreakdown = transformBreakdown(result);
             
             const creator = await Driver.findById('5f64eb116dca91accffcfd3e');
 
@@ -147,4 +155,4 @@ module.exports = {
             }         
     }
 };
-
+*/
