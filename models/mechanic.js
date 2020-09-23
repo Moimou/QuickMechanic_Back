@@ -7,6 +7,10 @@ const mechanicSchema = new Schema({
         type: String,
         required:true
     },
+    fullName:{
+        type: String,
+        required:true
+    },
     password:{
         type: String,
         required: true
@@ -14,7 +18,23 @@ const mechanicSchema = new Schema({
     phoneNumber:{
         type: Number,
         required: true
-    }
+    },
+    company_name: {
+        type: String,
+        required: true
+      },
+      company_img: {
+        type: String,
+        required: true
+      },
+      company_relative_location: {
+        type: String,
+        required: false
+      },
+      company_absolute_location: {
+        type: String,
+        required: true
+      }
 
 })
 

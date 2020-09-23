@@ -21,7 +21,12 @@ module.exports = {
                 const mechanic = new Mechanic({
                     email: args.mechanicInput.email,
                     password: hashedPassword,
-                    phoneNumber: args.mechanicInput.phoneNumber
+                    fullName: args.mechanicInput.fullName,
+                    phoneNumber: args.mechanicInput.phoneNumber,
+                    company_name: args.mechanicInput.company_name,
+                    company_img: args.mechanicInput.company_img,
+                    company_relative_location: args.mechanicInput.company_relative_location,
+                    company_absolute_location: args.mechanicInput.company_absolute_location
                 })
                 const result = await mechanic.save();
           

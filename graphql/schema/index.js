@@ -16,7 +16,8 @@ module.exports = buildSchema(`
                 _id: ID!
                 email: String!
                 password: String
-                phoneNumber: Float!
+                phoneNumber: Int!
+                fullName: String!
                 createdBreakdowns:[BreakDown!]
                 
             }
@@ -25,7 +26,12 @@ module.exports = buildSchema(`
                 _id: ID!
                 email: String!
                 password: String
+                fullName: String!
                 phoneNumber: Int!
+                company_name: String!
+                company_img: String!
+                company_relative_location: String
+                company_absolute_location: String!
                 
             }
 
@@ -45,15 +51,21 @@ module.exports = buildSchema(`
 
             input DriverInput{
                 email: String!
+                fullName: String!
                 password: String!
-                phoneNumber: Float!
+                phoneNumber: Int!
 
             }
 
             input MechanicInput{
                 email: String!
                 password: String!
-                phoneNumber: Float!
+                phoneNumber: Int!
+                fullName: String!
+                company_name: String!
+                company_img: String!
+                company_relative_location: String
+                company_absolute_location: String!
 
             }
 
