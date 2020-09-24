@@ -12,14 +12,21 @@ let port = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(bodyParser.json());
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
-  });
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+      }
+      next();
+    
+});
+
+
+app.use(bodyParser.json());
 
 app.use('/graphql',
     graphqlHTTP({
@@ -33,12 +40,12 @@ app.use('/graphql',
 // mongodb+srv://${process.env.MONGO_USER}:${process.env.MONG0_PASSWORD}@cluster0.81el4.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority
 mongoose.connect(`mongodb+srv://Sandra:L5ZnZ4LfjAvzHWSV@cluster0.81el4.mongodb.net/mechanic-react-dev?retryWrites=true&w=majority`)
     .then(() => {
-        app.listen(port, () =>{
+        app.listen(port, () => {
             console.log(`Exemple app is listening on port http://localhost:${port}`);
         });
     })
     .catch((error) => { console.log(error); })
 
 
- 
+
 
