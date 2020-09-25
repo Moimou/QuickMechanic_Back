@@ -19,21 +19,24 @@ module.exports = {
             throw err;
         }
     },
-    createBreakDown: async (args) => {
+    createBreakDown: async (args, req) => {
+        if(!req.isAuth){
+            throw new Error('Unauthenticated');
+        }
         const breakdown = new BreakDown({
             time_of_accident: new Date(args.breakdownInput.time_of_accident),
             driver_comment: args.breakdownInput.driver_comment,
             type_of_breakdown: args.breakdownInput.type_of_breakdown,
             location: args.breakdownInput.location,
             license_plate: args.breakdownInput.license_plate,
-            creator: '5f64eb116dca91accffcfd3e'
+            creator: req.userId
         })
         let createdBreakdown;
         try{
         const result = await breakdown.save();
                 createdBreakdown = transformBreakdown(result);
             
-            const creator = await Driver.findById('5f64eb116dca91accffcfd3e');
+            const creator = await Driver.findById(req.userId);
 
                 if (!creator) {
                     throw new Error("driver not found");
