@@ -32,7 +32,7 @@ module.exports = {
             }         
     },
 
-    login: async ({email,password}) =>{
+    login: async ({fullName,email,password,phoneNumber}) =>{
 
         const driver = await Driver.findOne({email:email});
         if(!driver){
