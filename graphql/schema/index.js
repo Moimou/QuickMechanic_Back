@@ -27,7 +27,7 @@ module.exports = buildSchema(`
                 email: String!
                 password: String
                 fullName: String!
-                phoneNumber: Int!
+                phoneNumber: String!
                 company_name: String!
                 company_img: String!
                 company_relative_location: String
@@ -60,7 +60,7 @@ module.exports = buildSchema(`
             input MechanicInput{
                 email: String!
                 password: String!
-                phoneNumber: string!
+                phoneNumber: String!
                 fullName: String!
                 company_name: String!
                 company_img: String!
