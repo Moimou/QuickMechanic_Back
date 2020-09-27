@@ -16,7 +16,7 @@ module.exports = buildSchema(`
                 _id: ID!
                 email: String!
                 password: String
-                phoneNumber: Int!
+                phoneNumber: String!
                 fullName: String!
                 createdBreakdowns:[BreakDown!]
                 
@@ -53,14 +53,14 @@ module.exports = buildSchema(`
                 email: String!
                 fullName: String!
                 password: String!
-                phoneNumber: Int!
+                phoneNumber: String!
 
             }
 
             input MechanicInput{
                 email: String!
                 password: String!
-                phoneNumber: Int!
+                phoneNumber: string!
                 fullName: String!
                 company_name: String!
                 company_img: String!
@@ -71,7 +71,7 @@ module.exports = buildSchema(`
 
             type RootQuery{
                     breakdowns:[BreakDown!]!
-                    login(fullName: String!, email: String!, password: String!, phoneNumber: Int!): AuthDriverData!
+                    login(fullName: String!, email: String!, password: String!, phoneNumber: String!): AuthDriverData!
             }
 
             type RootMutation{
