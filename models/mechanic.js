@@ -19,6 +19,10 @@ const mechanicSchema = new Schema({
         type: Number,
         required: true
     },
+    accountType:{
+      type: String,
+      required:false
+  },
     company_name: {
         type: String,
         required: true

@@ -19,6 +19,11 @@ const driverSchema = new Schema({
         type: String,
         required: true
     },
+    accountType:{
+        type: String,
+        required:false
+
+    },
     createdBreakdowns:[
         {
             type: Schema.Types.ObjectId,

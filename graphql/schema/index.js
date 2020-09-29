@@ -19,6 +19,7 @@ module.exports = buildSchema(`
                 phoneNumber: String!
                 fullName: String!
                 createdBreakdowns:[BreakDown!]
+                accountType: String!
                 
             }
 
@@ -32,6 +33,7 @@ module.exports = buildSchema(`
                 company_img: String!
                 company_relative_location: String
                 company_absolute_location: String!
+                accountType: String!
                 
             }
 

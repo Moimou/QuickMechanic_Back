@@ -22,7 +22,8 @@ module.exports = {
                     email: args.driverInput.email,
                     password: hashedPassword,
                     phoneNumber: args.driverInput.phoneNumber,
-                    fullName: args.driverInput.fullName
+                    fullName: args.driverInput.fullName,
+                    accountType: "Driver"
                 })
                 const result = await driver.save();
           

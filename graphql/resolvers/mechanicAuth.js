@@ -23,6 +23,7 @@ module.exports = {
                     password: hashedPassword,
                     fullName: args.mechanicInput.fullName,
                     phoneNumber: args.mechanicInput.phoneNumber,
+                    accountType: "Mechanic",
                     company_name: args.mechanicInput.company_name,
                     company_img: args.mechanicInput.company_img,
                     company_relative_location: args.mechanicInput.company_relative_location,
