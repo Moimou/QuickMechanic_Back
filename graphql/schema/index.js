@@ -19,8 +19,12 @@ module.exports = buildSchema(`
                 phoneNumber: String!
                 fullName: String!
                 createdBreakdowns:[BreakDown!]
-                accountType: String!
+                accountType: String
                 
+            }
+
+            type Location{
+                location: Float
             }
 
             type Mechanic{
@@ -32,8 +36,8 @@ module.exports = buildSchema(`
                 company_name: String!
                 company_img: String!
                 company_relative_location: String
-                company_absolute_location: String!
-                accountType: String!
+                company_absolute_location: [Location]
+                accountType: String
                 
             }
 

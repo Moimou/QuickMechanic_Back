@@ -29,15 +29,15 @@ const mechanicSchema = new Schema({
       },
       company_img: {
         type: String,
-        required: true
+        required: false
       },
       company_relative_location: {
         type: String,
         required: false
       },
       company_absolute_location: {
-        type: String,
-        required: true
+        type: [Float],
+        required: false
       }
 
 })
