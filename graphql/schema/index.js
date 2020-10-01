@@ -45,6 +45,9 @@ module.exports = buildSchema(`
                 driverId : ID!
                 token: String!
                 tokenExpiration : Int!
+                fullName: String!
+                accountType: String
+
             }
 
             input BreakDownInput{
