@@ -36,7 +36,7 @@ const mechanicSchema = new Schema({
         required: false
       },
       company_absolute_location: {
-        type: String,
+        type: [Number],
         required: false
       }
 
