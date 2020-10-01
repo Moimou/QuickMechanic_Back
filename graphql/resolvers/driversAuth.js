@@ -44,9 +44,9 @@ module.exports = {
        if(!isEqual){
         throw new Error ('Password is incorrect');
         }
-        const token = jwt.sign({driverId: driver.id, email: driver.email, fullName: driver.fullName},'teamtwonineonegroupasupersecretkey',{
+        const token = jwt.sign({driverId: driver.id, email: driver.email, fullName: driver.fullName, accountType:"Driver"},'teamtwonineonegroupasupersecretkey',{
             expiresIn:'1h'
         });
-        return {driverId: driver.id, token: token, tokenExpiration:1, fullName: fullName }
+        return {driverId: driver.id, token: token, tokenExpiration:1, fullName: fullName, accountType:"Driver"  }
     }
 }; 
