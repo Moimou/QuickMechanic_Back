@@ -16,7 +16,7 @@ const breakdownSchema = new Schema({
         required: true
     },
     location:{
-        type: String,
+        type: [Number],
         required:true
     },
     license_plate:{

@@ -7,7 +7,7 @@ module.exports = buildSchema(`
                 driver_comment: String
                 # vehicle can have multiple faliure types
                 type_of_breakdown: String!
-                location: String!
+                location: [Float]
                 license_plate: String!
                 creator: Driver!
             }
@@ -25,6 +25,7 @@ module.exports = buildSchema(`
 
             type Location{
                 location: Float
+                
             }
 
             type Mechanic{
@@ -54,7 +55,7 @@ module.exports = buildSchema(`
                 time_of_accident: String!
                  driver_comment: String
                  type_of_breakdown: String!
-                 location: String
+                 location: [Float]
                  license_plate: String!
             }
 
@@ -74,7 +75,7 @@ module.exports = buildSchema(`
                 company_name: String!
                 company_img: String!
                 company_relative_location: String
-                company_absolute_location: String!
+                company_absolute_location: [Float]
 
             }
 
