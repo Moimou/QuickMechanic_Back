@@ -35,6 +35,23 @@ module.exports = {
             } catch(err){
                 throw err;
             }         
+    },
+    login: async ({email,password}) =>{
+
+        const mechanic = await Mechanic.findOne({email:email});
+        if(!mechanic){
+            throw new Error ('Mechanic does not exist');
+        }
+       const isEqual = await bcrypt.compare(password, mechanic.password);
+       
+       if(!isEqual){
+        throw new Error ('Password is incorrect');
+        }
+        const token = jwt.sign({mechanicId: mechanic.id, email: mechanic.email, fullName: mechanic.fullName, accountType:mechanic.accountType},'teamtwonineonegroupasupersecretkey',{
+            expiresIn:'1h'
+        });
+        return {mechanicId: mechanic.id, token: token, tokenExpiration:1, fullName: mechanic.fullName, accountType:mechanic.accountType  }
     }
-};
+}; 
+
 
