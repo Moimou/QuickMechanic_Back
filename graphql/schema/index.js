@@ -54,7 +54,7 @@ module.exports = buildSchema(`
                 time_of_accident: String!
                  driver_comment: String
                  type_of_breakdown: String!
-                 location: String!
+                 location: String
                  license_plate: String!
             }
 

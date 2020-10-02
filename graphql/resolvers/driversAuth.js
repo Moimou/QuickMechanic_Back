@@ -33,7 +33,7 @@ module.exports = {
             }         
     },
 
-    login: async ({fullName,email,password,phoneNumber}) =>{
+    login: async ({email,password}) =>{
 
         const driver = await Driver.findOne({email:email});
         if(!driver){
@@ -44,9 +44,9 @@ module.exports = {
        if(!isEqual){
         throw new Error ('Password is incorrect');
         }
-        const token = jwt.sign({driverId: driver.id, email: driver.email, fullName: driver.fullName, accountType:"Driver"},'teamtwonineonegroupasupersecretkey',{
+        const token = jwt.sign({driverId: driver.id, email: driver.email, fullName: driver.fullName, accountType:driver.accountType},'teamtwonineonegroupasupersecretkey',{
             expiresIn:'1h'
         });
-        return {driverId: driver.id, token: token, tokenExpiration:1, fullName: fullName, accountType:"Driver"  }
+        return {driverId: driver.id, token: token, tokenExpiration:1, fullName: driver.fullName, accountType:driver.accountType  }
     }
 }; 
