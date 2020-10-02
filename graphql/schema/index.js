@@ -80,7 +80,7 @@ module.exports = buildSchema(`
 
             type RootQuery{
                     breakdowns:[BreakDown!]!
-                    login(fullName: String!, email: String!, password: String!, phoneNumber: String!): AuthDriverData!
+                    login(email: String!, password: String!): AuthDriverData!
             }
 
             type RootMutation{
