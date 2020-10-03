@@ -37,7 +37,7 @@ module.exports = {
                 throw err;
             }         
     },
-    login: async ({email,password}) =>{
+    loginMechanic: async ({email,password}) =>{
 
         const mechanic = await Mechanic.findOne({email:email});
         if(!mechanic){

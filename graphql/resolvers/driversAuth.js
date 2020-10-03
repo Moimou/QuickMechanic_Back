@@ -33,7 +33,7 @@ module.exports = {
             }         
     },
 
-    login: async ({email,password}) =>{
+    loginDriver: async ({email,password}) =>{
 
         const driver = await Driver.findOne({email:email});
         if(!driver){

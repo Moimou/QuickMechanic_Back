@@ -37,13 +37,22 @@ module.exports = buildSchema(`
                 company_name: String!
                 company_img: String!
                 company_relative_location: String
-                company_absolute_location: [Location]
+                company_absolute_location: [Float]
                 accountType: String
                 
             }
 
             type AuthDriverData{
                 driverId : ID!
+                token: String!
+                tokenExpiration : Int!
+                fullName: String!
+                accountType: String
+
+            }
+
+            type AuthMechanicData{
+                mechanicId : ID!
                 token: String!
                 tokenExpiration : Int!
                 fullName: String!
@@ -73,7 +82,7 @@ module.exports = buildSchema(`
                 phoneNumber: String!
                 fullName: String!
                 company_name: String!
-                company_img: String!
+                company_img: String
                 company_relative_location: String
                 company_absolute_location: [Float]
 
@@ -81,7 +90,8 @@ module.exports = buildSchema(`
 
             type RootQuery{
                     breakdowns:[BreakDown!]!
-                    login(email: String!, password: String!): AuthDriverData!
+                    loginDriver(email: String!, password: String!): AuthDriverData!
+                    loginMechanic(email: String!, password: String!): AuthMechanicData!
             }
 
             type RootMutation{

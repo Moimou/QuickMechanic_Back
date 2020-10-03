@@ -1,11 +1,11 @@
 const authDriverResolver = require('./driversAuth');
 const breakdownResolver = require('./breakdowns');
-const mechanicResolver = require('./mechanicAuth');
+const authmechanicResolver = require('./mechanicAuth');
 
 const rootResolver = {
     ...authDriverResolver,
     ...breakdownResolver,
-    ...mechanicResolver
+    ...authmechanicResolver
 };
 
 module.exports = rootResolver;
