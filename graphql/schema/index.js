@@ -7,7 +7,8 @@ module.exports = buildSchema(`
                 driver_comment: String
                 # vehicle can have multiple faliure types
                 type_of_breakdown: String!
-                location: [Float]
+                location_lon: [Float]
+                location_lat: [Float]
                 license_plate: String!
                 creator: Driver!
             }
@@ -37,7 +38,8 @@ module.exports = buildSchema(`
                 company_name: String!
                 company_img: String!
                 company_relative_location: String
-                company_absolute_location: [Float]
+                company_absolute_location_lon: [Float]
+                company_absolute_location_lat: [Float]
                 accountType: String
                 
             }
@@ -57,6 +59,7 @@ module.exports = buildSchema(`
                 tokenExpiration : Int!
                 fullName: String!
                 accountType: String
+                
 
             }
 
@@ -64,7 +67,8 @@ module.exports = buildSchema(`
                 time_of_accident: String!
                  driver_comment: String
                  type_of_breakdown: String!
-                 location: [Float]
+                 location_lon: [Float]
+                 location_lat: [Float]
                  license_plate: String!
             }
 
@@ -84,7 +88,8 @@ module.exports = buildSchema(`
                 company_name: String!
                 company_img: String
                 company_relative_location: String
-                company_absolute_location: [Float]
+                company_absolute_location_lon: [Float]
+                company_absolute_location_lat: [Float]
 
             }
 

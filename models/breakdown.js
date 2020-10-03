@@ -15,7 +15,11 @@ const breakdownSchema = new Schema({
         type: String,
         required: true
     },
-    location:{
+    location_lon:{
+        type: [Number],
+        required:true
+    },
+    location_lat:{
         type: [Number],
         required:true
     },

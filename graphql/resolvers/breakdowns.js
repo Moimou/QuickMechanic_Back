@@ -27,7 +27,8 @@ module.exports = {
             time_of_accident: new Date(args.breakdownInput.time_of_accident),
             driver_comment: args.breakdownInput.driver_comment,
             type_of_breakdown: args.breakdownInput.type_of_breakdown,
-            location: args.breakdownInput.location,
+            location_lon: args.breakdownInput.location_lon,
+            location_lat: args.breakdownInput.location_lat,
             license_plate: args.breakdownInput.license_plate,
             creator: req.userId
         })

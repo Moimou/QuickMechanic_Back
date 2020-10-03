@@ -2,6 +2,23 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+
+// create geolocation Schema
+/*const GeoSchema = new Schema({
+  
+    type: {
+      type: String,
+      enum: ['Point'],
+      required:false
+  },
+  coordinates: {
+      type: [Number],
+      index: '2dsphere',
+      required: true
+  }
+
+});*/
+// create mechanic Schema & model
 const mechanicSchema = new Schema({
     email:{
         type: String,
@@ -35,7 +52,11 @@ const mechanicSchema = new Schema({
         type: String,
         required: false
       },
-      company_absolute_location: {
+      company_absolute_location_lon: {
+        type: [Number],
+        required: false
+      },
+      company_absolute_location_lat: {
         type: [Number],
         required: false
       }

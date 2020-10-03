@@ -28,7 +28,8 @@ module.exports = {
                     company_name: args.mechanicInput.company_name,
                     company_img: args.mechanicInput.company_img,
                     company_relative_location: args.mechanicInput.company_relative_location,
-                    company_absolute_location: args.mechanicInput.company_absolute_location
+                    company_absolute_location_lon: args.mechanicInput.company_absolute_location_lon,
+                    company_absolute_location_lat: args.mechanicInput.company_absolute_location_lat
                 })
                 const result = await mechanic.save();
           
