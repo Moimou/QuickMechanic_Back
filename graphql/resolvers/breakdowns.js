@@ -49,9 +49,9 @@ module.exports = {
                 creator.createdBreakdowns.push(breakdown);
                 await creator.save();
                 
-                return{createdBreakdown, listOfAllMechanic}
+                return{createdBreakdown, listOfAllMechanic};
 
-                return createdBreakdown ;
+                //return createdBreakdown ;
            } catch (err){ 
                 console.log(err);
                 throw err;
