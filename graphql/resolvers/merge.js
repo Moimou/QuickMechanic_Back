@@ -4,6 +4,7 @@ const Driver = require('../../models/driver');
 const Mechanic = require('../../models/mechanic');
 
 const {dateToString} = require('../../helpers/date');
+const breakdown = require('../../models/breakdown');
 
 
 const transformBreakdown = breakdown =>{
@@ -11,7 +12,9 @@ const transformBreakdown = breakdown =>{
         ...breakdown._doc,
         _id: breakdown.id,
         time_of_accident:dateToString(breakdown._doc.time_of_accident),
-        creator: driver.bind(this, breakdown.creator)
+        creator: driver.bind(this, breakdown.creator),
+        listOfAllMechanic: mechanic.bind(this, breakdown.listOfAllMechanic),
+        
     };
 };
 
@@ -28,6 +31,18 @@ const breakdowns = async breakdownIds => {
         throw err;
     }
 };
+//verifier la fonction ci-dessous avant de decommenter
+/*const breakdown = async ()=> {
+    try {
+        const breakdowns = await BreakDown.find();
+        breakdowns.map(breakdown => {
+            return transformBreakdown(breakdown);
+        });
+        return breakdowns;
+    } catch (err) {
+        throw err;
+    }
+};*/
 
 const driver = async driverId => {
     try {
@@ -42,13 +57,13 @@ const driver = async driverId => {
     }
 };
 
-const mechanic = async mechanicId => {
+const mechanic = async() => {
     try {
-        const mechanic = await Mechanic.findById(mechanicId)
+        const mechanic = await Mechanic.find()
         return {
             ...mechanic._doc,
             id: mechanic.id,
-           // createdBreakdowns: mechanic.bind(this, driver._doc.createdBreakdowns)
+            all_created_breakdowns: breakdowns.bind(this, mechanic._doc.all_created_breakdowns)
         };
     } catch (err) {
         throw error;

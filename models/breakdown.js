@@ -30,7 +30,13 @@ const breakdownSchema = new Schema({
     creator:{
         type: Schema.Types.ObjectId,
         ref: 'Driver'
-    }
+    },
+    listOfAllMechanic: [
+        {
+            type: Schema.Types.ObjectId,
+            ref:'Mechanic'
+        }
+    ]
     
 });
 

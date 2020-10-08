@@ -1,6 +1,6 @@
 const BreakDown = require('../../models/breakdown');
 const Driver = require('../../models/driver');
-
+const Mechanic = require('../../models/mechanic');
 
 const {transformBreakdown} = require('./merge');
 
@@ -33,19 +33,25 @@ module.exports = {
             creator: req.userId
         })
         let createdBreakdown;
+        
         try{
-        const result = await breakdown.save();
-                createdBreakdown = transformBreakdown(result);
+        const result = await breakdown.save();                        
+                createdBreakdown = transformBreakdown(result);        
             
+            const listOfAllMechanic = await Mechanic.find();
             const creator = await Driver.findById(req.userId);
+
+            
 
                 if (!creator) {
                     throw new Error("driver not found");
                 }
                 creator.createdBreakdowns.push(breakdown);
                 await creator.save();
+                
+                return{createdBreakdown, listOfAllMechanic}
 
-                return createdBreakdown;
+                return createdBreakdown ;
            } catch (err){ 
                 console.log(err);
                 throw err;

@@ -11,6 +11,7 @@ module.exports = buildSchema(`
                 location_lat: [Float]
                 license_plate: String!
                 creator: Driver!
+                listOfAllMechanic: [Mechanic]
             }
 
             type Driver{
@@ -41,6 +42,7 @@ module.exports = buildSchema(`
                 company_absolute_location_lon: [Float]
                 company_absolute_location_lat: [Float]
                 accountType: String
+                all_created_breakdowns:[BreakDown]
                 
             }
 

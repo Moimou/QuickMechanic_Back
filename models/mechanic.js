@@ -59,7 +59,13 @@ const mechanicSchema = new Schema({
       company_absolute_location_lat: {
         type: [Number],
         required: false
-      }
+      },
+      all_created_breakdowns: [
+        {
+            type: Schema.Types.ObjectId,
+            ref:'BreakDown'
+        }
+    ]
 
 })
 
