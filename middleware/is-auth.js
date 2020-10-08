@@ -23,6 +23,6 @@ module.exports = (req, res, next) => {
         return next();
     }
     req.isAuth = true;
-    req.userId = jwt.decodedToken.userId;
+    req.userId = decodedToken.userId;
     next();
 }
