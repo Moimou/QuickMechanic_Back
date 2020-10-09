@@ -48,14 +48,13 @@ module.exports = {
             }
             creator.createdBreakdowns.push(breakdown);
             await creator.save();
-
-            return{createdBreakdown, listOfAllMechanic};
-
-            //return createdBreakdown;
+           // return createdBreakdowns;
+           return {listOfAllMechanic} ;
         } catch (err) {
             console.log(err);
             throw err;
         }
+      
     },
 
 
